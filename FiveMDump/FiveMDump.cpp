@@ -12,6 +12,7 @@
 #include <sstream>
 
 // Made by https://github.com/realCosmicHub
+// Fixed by [Team] IamZiroToxic#8110
 
 DWORD64 Base;
 DWORD pid;
@@ -146,8 +147,7 @@ void main() {
 	HWND hWnd = FindWindowA(("grcWindow"), nullptr);
 	GetWindowThreadProcessId(hWnd, &pid);
 	pHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
-	Base = GetModuleBaseAddress(pid, L"FiveM_GTAProcess.exe");
-
+	Base = GetModuleBaseAddress(pid, L"FiveM_b2372_GTAProcess.exe");
 	if (Base) {
 		LPCSTR SignatureWorldPTR = "\x48\x8b\x05\x00\x00\x00\x00\x45\x00\x00\x00\x00\x48\x8b\x48\x08\x48\x85\xc9\x74\x07";
 		LPCSTR MaskWorldPTR = "xxx????x????xxxxxxxxx";
@@ -161,9 +161,9 @@ void main() {
 		LPCSTR SignatureGlobalPTR = "\x4c\x8d\x05\x00\x00\x00\x00\x4d\x8b\x08\x4d\x85\xc9\x74\x11";
 		LPCSTR MaskGlobalPTR = "xxx????xxxxxxxx";
 
-		if (GetProcess(L"FiveM_GTAProcess.exe"))
+		if (GetProcess(L"FiveM_b2372_GTAProcess.exe"))
 		{
-			module mod = GetModule(L"FiveM_GTAProcess.exe");
+			module mod = GetModule(L"FiveM_b2372_GTAProcess.exe");
 			printf("========== Citizen Scripting ==========\n");
 			DWORD64 TempWorldPTR = FindSignature(mod.dwBase, mod.dwSize, SignatureWorldPTR, MaskWorldPTR);
 			auto world = (TempWorldPTR)+readInteger(pHandle, TempWorldPTR + 3) + 7;
@@ -263,3 +263,4 @@ void main() {
 }
 
 // Made by https ://github.com/realCosmicHub
+// Fixed by [Team] IamZiroToxic#8110
